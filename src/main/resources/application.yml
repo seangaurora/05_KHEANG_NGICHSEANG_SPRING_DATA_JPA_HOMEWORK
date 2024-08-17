@@ -1,0 +1,17 @@
+#spring.application.name=05_KHEANG_KHEANGNGICHSEANG_SPRING_DATA_JPA_HOMEWORK
+#spring.datasource.url=jdbc:postgresql://localhost:5432/postgres
+#spring.datasource.username=postgres
+#spring.datasource.password=tech
+#
+#spring.jpa.hibernate.ddl-auto=update
+
+spring:
+  application:
+    name: 05_KHEANG_KHEANGNGICHSEANG_SPRING_DATA_JPA_HOMEWORK
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: tech
+  jpa:
+    hibernate:
+      ddl-auto: update
