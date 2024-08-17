@@ -38,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
         order.setStatus(OrderStatusEnum.PENDING);
         order = orderRepository.save(order);
 
-//        List<ProductOrder> productOrders = new ArrayList<>();
+        List<ProductOrder> productOrders = new ArrayList<>();
         double totalAmount = 0.0;
         for (OrderRequest orderRequest : orderRequests) {
             Product product = productRepository.findById(orderRequest.getProductId()).orElseThrow();
@@ -52,12 +52,14 @@ public class OrderServiceImpl implements OrderService {
             productOrder.setProduct(product);
             productOrder.setOrder(order);
             productOrder.setQuantity(productQty);
-//            productOrders.add(productOrder);
-            productOrderRepository.save(productOrder);
+            productOrders.add(productOrder);
+//            productOrderRepository.save(productOrder);
         }
 
         order.setTotalAmount(totalAmount);
-//        order.setProducts(productOrders);
+        order.setProducts(productOrders);
+
+        productOrderRepository.saveAll(productOrders);
 
         Order savedOrder = orderRepository.save(order);
         return savedOrder.toResponse();
