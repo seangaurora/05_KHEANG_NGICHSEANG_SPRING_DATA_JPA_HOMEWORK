@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -37,7 +38,10 @@ public class Customer {
 
 
     public CustomerResponse toResponse(){
-        List<OrderResponse> orderResponseList = orders.stream().map(Order::toResponse).toList();
+        List<OrderResponse> orderResponseList = new ArrayList<>();
+        if (orders != null){
+            orderResponseList = orders.stream().map(Order::toResponse).toList();
+        }
         return new CustomerResponse(customerId, customerName, address, phoneNumber, email.toResponse(), orderResponseList);
     }
 }
